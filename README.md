@@ -1,43 +1,32 @@
-# Mathlified
+# Mathlifier Monorepo
 
-Exploring mathematics in the digital age
+> Tools for typesetting mathematics on the web
 
 ---
 
-## What is Mathlified?
+## What is Mathlifier?
 
 Mathlified is a monorepo containing various packages
 exploring the creation of modern mathematical content.
-
-We will cover the intersection between mathematics, mathematics education,
-mathematical typesetting, and web and mobile development.
-
-## Project status
-
-We are in very early alpha, and will slowly build things out from here.
 
 ## Packages
 
 ### Mathlifier
 
-A KaTeX wrapper library. [Link to folder](https://github.com/kelvinsjk/mathlified/tree/main/packages/mathlifier)
+Functions to typeset mathematics and mathematics within Markdown/Djot [Link to folder](https://github.com/kelvinsjk/mathlifier/tree/main/packages/mathlifier)
 
-### Mathlified main site
+### Svelte Math
 
-Under construction
+Svelte component to convert LaTeX markup to MathML
+
+### Svelte Djot Math
+
+Svelte component to render Djot with Math into HTML
 
 ### Svelte math site
 
 A comparison of different ways to typeset mathematics in Svelte. [Link to site](https://svelte-math.vercel.app)
 
-### Svelte KaTeX
-
-A Svelte component using KaTeX to typeset math 
-
-### MDsveX KaTeX starter
-
-A MDsveX SvelteKit starter that supports math [Link to site](https://mdsvex-math-starter.vercel.app)
-
 ## License
 
-[MIT](https://github.com/kelvinsjk/mathlified/blob/main/LICENSE)
+[MIT](https://github.com/kelvinsjk/mathlifier/blob/main/LICENSE)
