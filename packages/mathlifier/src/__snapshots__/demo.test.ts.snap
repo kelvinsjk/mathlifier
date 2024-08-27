@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`demo works 1`] = `
+"<section id="Mathlifier-demo">
+<h1>Mathlifier demo</h1>
+<section id="Inline-math">
+<h2>Inline math</h2>
+<ul>
+<li>
+Inline static math: <math><mrow><mi>x</mi><mi>.</mi></mrow></math>
+</li>
+<li>
+Inline dynamic math <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+</li>
+<li>
+Inline dynamic math gone awry: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>a</mi><mi>n</mi><mi>d</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>.</mi></mrow></math>
+</li>
+<li>
+Inline empty start 1: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+</li>
+<li>
+Inline empty start 2: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+</li>
+</ul>
+</section>
+<section id="Display-math">
+<h2>Display math</h2>
+<p>Static: <math display="block" class="tml-display" style="display:block math;"><mi>x</mi></math>
+After displayed math.</p>
+<p>Static with paragraphing:</p>
+<p><math display="block" class="tml-display" style="display:block math;"><mi>x</mi></math></p>
+<p>After displayed math.</p>
+<section id="Dynamic">
+<h3>Dynamic</h3>
+<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo></mrow></math></p>
+<p>then text</p>
+</section>
+<section id="Dynamic-gone-wrong">
+<h3>Dynamic gone wrong</h3>
+<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mi>t</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow></math></p>
+</section>
+<section id="Display-math-should-not-touch-punctuation">
+<h3>Display math should not touch punctuation</h3>
+<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math></p>
+<p>.</p>
+</section>
+</section>
+<section id="Amsmath-environments">
+<h2>Amsmath environments</h2>
+<p><math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" columnalign="left right left right" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mrow><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math></p>
+</section>
+<section id="Escaped-dollar-signs">
+<h2>Escaped dollar signs</h2>
+<p>$x  vs <math><mi>x</mi></math></p>
+<p>Escaping within math <math><mrow><mi>$</mi><mi>x</mi><mo separator="true">,</mo></mrow></math> dynamic math <math><mrow><mi>$</mi><mi>x</mi><mo separator="true">,</mo></mrow></math>
+and displayed math</p>
+<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>$</mi><mi>x</mi></mrow></math></p>
+<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>$</mi><mi>x</mi></mrow></math></p>
+</section>
+<section id="Dynamic-text-example">
+<h2>Dynamic text example</h2>
+<p>By default, all interpolation triggers math or display modes.
+To interpolate strings, use a preceding @ symbol, like
+in this exce11ent example.</p>
+</section>
+</section>
+"
+`;
