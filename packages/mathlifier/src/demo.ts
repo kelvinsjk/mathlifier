@@ -1,4 +1,8 @@
-import { mathlifier as md, setOptions, resetOptions } from "./lib/mathlifiers";
+import {
+  mathlifier as md,
+  setOptions,
+  //resetOptions
+} from "./lib/mathlifiers";
 
 const x = "x";
 const one = 1;

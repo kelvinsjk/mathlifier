@@ -63,6 +63,26 @@ and displayed math</p>
 To interpolate strings, use a preceding @ symbol, like
 in this exce11ent example.</p>
 </section>
+<section id="Options">
+<h2>Options</h2>
+<section id="Temml-Options">
+<h3>Temml Options</h3>
+<p><math><mrow><mo>∈</mo></mrow><mrow><mi>ℝ</mi></mrow></math></p>
+</section>
+<section id="Djot-Parse-Options-Warnings">
+<h3>Djot Parse Options (Warnings)</h3>
+<p>This attribute is unattached. 
+djotParseOptions sent a warning to the console.</p>
+</section>
+<section id="Custom-overrides">
+<h3>Custom overrides</h3>
+<p>italics override</p>
+</section>
+<section id="Djot-HTML-Render-Options">
+<h3>Djot HTML Render Options</h3>
+<p>strong override</p>
+</section>
+</section>
 </section>
 "
 `;
