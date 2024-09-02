@@ -1,4 +1,4 @@
-# mathlifier
+# Mathlifier Changelog
 
 ## 2.0.0
 
