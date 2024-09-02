@@ -1,5 +1,11 @@
 # Mathlifier Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- - bug fixes: add files and prepublish script to package.json
+
 ## 2.0.0
 
 ### Major Changes
