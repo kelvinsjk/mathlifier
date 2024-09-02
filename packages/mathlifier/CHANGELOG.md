@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- - bug fixes: add files and prepublish script to package.json
+- bug fixes: added file and prepublish script to package.json
 
 ## 2.0.0
 
