@@ -5,7 +5,7 @@
 
 <!-- new blockquote -->
 
-> Simpler way to render math
+> A simpler way to render math on the web
 
 A collection of tools to help render mathematics in HTML and MathML
 
@@ -42,13 +42,13 @@ const alignedEnv = alignStar("x &= 2-1 \\\\ &= 1");
 // - alignat, alignatStar
 ```
 
-### Dynamic mathematical content via mathlifier
+### Mixing prose and math via mathlifier
 
-When working with dynamically generated mathematical content, we find ourselves
-calling the previous functions over and over. Markdown-like notation is also
-easier to handle vs HTML. Because of the potential ambiguity of Markdown leading
-to bugs, we use [Djot](https://djot.net/) syntax (which is very similar to
-markdown).
+When working with dynamically generated mathematical content interspersed with
+prose, we find ourselves calling the previous functions over and over.
+Markdown-like notation is also easier to handle vs HTML. Because of the
+potential ambiguity of Markdown leading to bugs, we use
+[Djot](https://djot.net/) syntax (which is very similar to markdown).
 
 Mathlifier provides the `mathlifier` tagged template function, which takes Djot
 markup interspersed with math notation interpolations, and outputs a HTML
@@ -60,11 +60,13 @@ const x = "x";
 const xVal = 2;
 const djotMarkup = mathlifier`
 Interpolation starts _math mode_ so ${x} = ${xVal}
-render "x=2" in math mode.
+renders "x=2" in math mode.
 
-_Display_ and _amsmath environment_ modes start with a $ before interpolation,
-spans multiple lines and ends with an empty line.
-Amsmath environments are automatically closed after they end.
+_Display_ and _amsmath environment_ modes start with
+an additional $ before interpolation.
+It spans multiple lines and ends with an empty line.
+Amsmath environments are automatically closed
+after they end.
 
 $${xVal}x^2 + x - 3
 = ${xVal}
@@ -72,10 +74,14 @@ $${xVal}x^2 + x - 3
 $${"align"} x &= ${xVal}
 \\\\ y &= 3
 
-If we want to *prevent* math mode and do regular interpolation (ie text), prefix with an @ symbol, like this e@${x}cellent example.
+If we want to *prevent* math mode and do regular
+interpolation (ie text), prefix with an @ symbol,
+like this e@${x}cellent example.
 
-Regular static math will also be converted. For example, $x=2$ and $$y=3.$$
-This means that regular dollar signs must be escaped, like \\$5.
+Regular static math will also be converted.
+For example, $x=2$ and $$y=3.$$
+This means that regular dollar signs
+must be escaped, like \\$5.
 `;
 ```
 
@@ -137,8 +143,8 @@ for the differences between the two libraries.
 
 ### Functions that are removed
 
-The following functions, that were available but not documented, are removed in
-V2.
+The following functions, that were available in V1 but not documented, are
+removed in V2.
 
 - linebreak, newline, newParagraph
 - bold, strong, emph, em
@@ -146,8 +152,9 @@ V2.
 
 These functions were used, along with the separate `mathlifier2` library, in an
 attempt to have a single source code output to web and LaTeX. We have since
-achieved this goal by using Djot markup along with the new `mathlifier` tagged
-template function, so they are no longer necessary.
+achieved this goal by using Djot markup along with the new `mathlifier`,
+`mathlifierDj` and `mathlifierTex` tagged template functions, so they are no
+longer necessary.
 
 ### Upgrading to V2
 
@@ -192,7 +199,7 @@ break before the second and subsequent top-level `=` signs, which we can use
 
 **Breaking change**. We still believe in this opinion as it makes our output
 more mobile-friendly. However, our original approach of using an inline-style
-makes it hard for the css Cascade to override for power users.
+makes it hard for css cascade overrides for power users.
 
 We recommend adding the following css rule to replicate the previous behavior.
 

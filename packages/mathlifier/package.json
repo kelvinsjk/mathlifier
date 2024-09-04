@@ -31,5 +31,13 @@
   "dependencies": {
     "@djot/djot": "^0.3.1",
     "temml": "^0.10.29"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelvinsjk/mathlifier.git",
+    "directory": "packages/mathlifier"
+  },
+  "bugs": {
+    "url": "https://github.com/kelvinsjk/mathlifier/issues"
   }
 }
