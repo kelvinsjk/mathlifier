@@ -1,5 +1,11 @@
 # Mathlifier Changelog
 
+## 2.0.3
+
+### Patch Changes
+
+- bug fixes: inline math now supports content spanning multiple lines
+
 ## 2.0.2
 
 ### Patch Changes
