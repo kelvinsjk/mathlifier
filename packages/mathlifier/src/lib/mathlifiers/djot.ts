@@ -17,5 +17,8 @@ export function mathlifierDj(
   const markup = mathlifierTex(strings, ...values);
   return markup
     .replace(/(?<!\\)\$(?!`)\$([^]+?)\$\$/g, (_, match) => `$$\`${match}\``)
-    .replace(/(?<!\\)\$(?!`)(.+?)(?<!\\)\$/g, (_, match) => `$\`${match}\``);
+    .replace(
+      /(?<!\\)\$(?![`$])([^]+?)(?<!\\)\$/g,
+      (_, match) => `$\`${match}\``
+    );
 }

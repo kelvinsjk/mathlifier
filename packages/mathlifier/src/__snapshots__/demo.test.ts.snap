@@ -67,7 +67,7 @@ in this exce11ent example.</p>
 <h2>Options</h2>
 <section id="Temml-Options">
 <h3>Temml Options</h3>
-<p><math><mrow><mo>∈</mo></mrow><mrow><mi>ℝ</mi></mrow></math></p>
+<p><math><mrow><mi>x</mi><mo>∈</mo></mrow><mrow><mi>ℝ</mi></mrow></math></p>
 </section>
 <section id="Djot-Parse-Options-Warnings">
 <h3>Djot Parse Options (Warnings)</h3>
@@ -81,6 +81,13 @@ djotParseOptions sent a warning to the console.</p>
 <section id="Djot-HTML-Render-Options">
 <h3>Djot HTML Render Options</h3>
 <p>strong override</p>
+</section>
+</section>
+<section id="Tests">
+<h2>Tests</h2>
+<section id="Inline-should-work-across-multiple-lines">
+<h3>Inline should work across multiple lines</h3>
+<p><math><mrow><mo fence="true" form="prefix">(</mo><mtable columnalign="center"><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>1</mn></mtd></mtr><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>2</mn></mtd></mtr></mtable><mo fence="true" form="postfix">)</mo></mrow></math></p>
 </section>
 </section>
 </section>

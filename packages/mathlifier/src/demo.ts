@@ -96,7 +96,7 @@ in this e@${x}ce@${one}@${one}ent example.
 
 ### Temml Options
 
-$ \\inR $ 
+$ x \\inR $ 
 
 ### Djot Parse Options (Warnings)
 
@@ -110,5 +110,14 @@ _italics_
 ### Djot HTML Render Options
 
 *strong*
+
+## Tests
+
+### Inline should work across multiple lines
+
+$\\begin{pmatrix}
+1 \\\\
+2
+\\end{pmatrix}$
 
 `;
