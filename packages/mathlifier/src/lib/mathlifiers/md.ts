@@ -1,14 +1,14 @@
 import { mathlifierFactory, type Modules } from "../factory";
 
 /**
- * adds math markup to template string.
+ * adds math markup to template string, using $ and $$ delimiters. Ams math environments are put in display math mode
  *
  * math: starts with ${x}, terminates with new line. Mathlifier will add $x$ delimiters.
  * display: starts with $${x}, terminates with empty line. Mathlifier will add $$x$$ delimiters.
- * amsmath env: starts with $${'align'}x, etc, terminates with empty line. Mathlifier will add $$\begin{env}x\end{env}$$ delimiters.
+ * env: starts with #${'align'}x, etc, terminates with empty line. Mathlifier will add $$\begin{env}x\end{env}$$ delimiters.
  * text: starts with @${x}, terminates immediately. Mathlifier will interpolate these as regular strings
  */
-export function mathlifierTex(
+export function md(
   strings: TemplateStringsArray,
   ...values: unknown[]
 ): string {

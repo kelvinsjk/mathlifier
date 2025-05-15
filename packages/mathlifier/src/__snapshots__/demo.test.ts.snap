@@ -89,7 +89,90 @@ djotParseOptions sent a warning to the console.</p>
 <h3>Inline should work across multiple lines</h3>
 <p><math><mrow><mo fence="true" form="prefix">(</mo><mtable columnalign="center"><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>1</mn></mtd></mtr><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>2</mn></mtd></mtr></mtable><mo fence="true" form="postfix">)</mo></mrow></math></p>
 </section>
+<section id="Ending-with-dollar-delimiter-should-work">
+<h3>Ending with dollar delimiter should work</h3>
+<p><math><mrow><mi>x</mi><mi>.</mi></mrow></math></p>
 </section>
 </section>
+</section>
+"
+`;
+
+exports[`x demo works 1`] = `
+"
+\`\`\` =html
+<math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" columnalign="left right left right" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>y</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math>
+\`\`\`
+
+\`\`\` =tex
+\\begin{align}
+x &= 1 \\\\
+y &= 2
+\\end{align}
+\`\`\`
+"
+`;
+
+exports[`x demo works 2`] = `
+"% Options for packages loaded elsewhere
+\\PassOptionsToPackage{unicode}{hyperref}
+\\PassOptionsToPackage{hyphens}{url}
+%
+\\documentclass[
+]{article}
+\\usepackage{amsmath,amssymb}
+\\usepackage{iftex}
+\\ifPDFTeX
+  \\usepackage[T1]{fontenc}
+  \\usepackage[utf8]{inputenc}
+  \\usepackage{textcomp} % provide euro and other symbols
+\\else % if luatex or xetex
+  \\usepackage{unicode-math} % this also loads fontspec
+  \\defaultfontfeatures{Scale=MatchLowercase}
+  \\defaultfontfeatures[\\rmfamily]{Ligatures=TeX,Scale=1}
+\\fi
+\\usepackage{lmodern}
+\\ifPDFTeX\\else
+  % xetex/luatex font selection
+\\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\\IfFileExists{upquote.sty}{\\usepackage{upquote}}{}
+\\IfFileExists{microtype.sty}{% use microtype if available
+  \\usepackage[]{microtype}
+  \\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\\makeatletter
+\\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \\IfFileExists{parskip.sty}{%
+    \\usepackage{parskip}
+  }{% else
+    \\setlength{\\parindent}{0pt}
+    \\setlength{\\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \\KOMAoptions{parskip=half}}
+\\makeatother
+\\usepackage{xcolor}
+\\setlength{\\emergencystretch}{3em} % prevent overfull lines
+\\providecommand{\\tightlist}{%
+  \\setlength{\\itemsep}{0pt}\\setlength{\\parskip}{0pt}}
+\\setcounter{secnumdepth}{-\\maxdimen} % remove section numbering
+\\usepackage{bookmark}
+\\IfFileExists{xurl.sty}{\\usepackage{xurl}}{} % add URL line breaks if available
+\\urlstyle{same}
+\\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\\author{}
+\\date{}
+
+\\begin{document}
+
+\\begin{align}
+x &= 1 \\\\
+y &= 2
+\\end{align}
+
+\\end{document}
 "
 `;

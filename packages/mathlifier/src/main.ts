@@ -1,7 +1,8 @@
 import "./style.css";
-import { html } from "./demo.ts";
+import { html, xHtml } from "./demo.ts";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = html;
+document.querySelector<HTMLDivElement>("#x")!.innerHTML = xHtml;
 
 import {
   math,

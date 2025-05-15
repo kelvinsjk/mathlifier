@@ -1,0 +1,11 @@
+
+``` =html
+<math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" columnalign="left right left right" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>y</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math>
+```
+
+``` =tex
+\begin{align}
+x &= 1 \\
+y &= 2
+\end{align}
+```

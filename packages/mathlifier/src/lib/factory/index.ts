@@ -13,6 +13,8 @@ export interface Modules {
   };
 }
 
+// TODO: add ability for custom environments
+
 /**
  * @param modules an object with functions detailing how to render the supported math environments
  * @param options
@@ -38,7 +40,10 @@ export function mathlifierFactory(
       )
         nextVal = "";
       if (mode === Modes.text) {
-        if (str.endsWith("@")) {
+        if (i === strings.length - 1) {
+          // last string
+          finalOutput += str;
+        } else if (str.endsWith("@")) {
           // continues text mode
           finalOutput += `${str.slice(0, str.length - 1)}${nextVal}`;
         } else {
@@ -266,15 +271,9 @@ function startNewEnv(
   const defaultMathEnvOptions = { mathEnv: MathEnvs.equation };
   let mathEnvOptions: MathEnvOptions = defaultMathEnvOptions;
   if (after.endsWith("$")) {
+    // new display mode
     let x = `${nextVal}`;
     let mode = Modes.display;
-    if (isMathEnv(x)) {
-      // new math env
-      mode = Modes.mathEnv;
-      mathEnvOptions = { mathEnv: envToMode[x] };
-      //TODO: handle alignat cols
-      x = "";
-    }
     // new display mode
     return [
       mode,
@@ -282,6 +281,28 @@ function startNewEnv(
       curr + `${newline}${after.slice(0, after.length - 1)}`,
       mathEnvOptions,
     ];
+  } else if (after.endsWith("#")) {
+    // new environment
+    if (typeof nextVal === "string" && isMathEnv(nextVal)) {
+      // new math env
+      let mode = Modes.mathEnv;
+      mathEnvOptions = { mathEnv: envToMode[nextVal] };
+      //TODO: handle alignat cols
+      return [
+        mode,
+        "",
+        curr + `${newline}${after.slice(0, after.length - 1)}`,
+        mathEnvOptions,
+      ];
+    } else {
+      console.warn(`Unknown environment: ${nextVal}. Defaulting to equation.`);
+      return [
+        Modes.mathEnv,
+        `${nextVal}`,
+        curr + `${newline}${after.slice(0, after.length - 1)}`,
+        { mathEnv: MathEnvs.equation },
+      ];
+    }
   } else if (after.endsWith("@")) {
     // new text mode
     return [

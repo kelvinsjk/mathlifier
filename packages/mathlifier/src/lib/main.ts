@@ -1,10 +1,13 @@
 export { mathlifierFactory } from "./factory";
 export {
   mathlifier,
-  mathlifierTex,
-  mathlifierDj,
-  setOptions,
-  resetOptions,
+  md,
+  dj,
+  setMathlifierOptions,
+  resetMathlifierOptions,
+  x,
+  setXOptions,
+  resetXOptions,
 } from "./mathlifiers";
 export {
   math,

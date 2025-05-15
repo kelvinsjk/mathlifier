@@ -1,5 +1,26 @@
 # Mathlifier Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- feat: introduced the `x` function to produce html/tex compatible djot markup,
+  along with setXOptions and resetXOptions
+
+### Breaking Changes
+
+- environments are now triggered by #${} instead of ${}
+- mathlifierTex is now md, mathlifierDj is now dj
+- setOptions and resetOptions are now setMathlifierOptions and
+  resetMathlifierOptions
+- Only `mathlifier*` functions are changed. "Sprinkles" (`math`, `display`, etc)
+  are untouched so you can upgrade without changes if those are the only
+  functions in use.
+
+### Patch Changes
+
+- fix: correct output when string ends in $
+
 ## 2.0.3
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import { mathlifierDj } from "./djot";
+import { dj } from "./djot";
 import { djotMathOverride } from "./djot-math-override";
 import { Options as TemmlOptions } from "temml";
 import { renderHTML, parse, type Visitor, type HTMLRenderer } from "@djot/djot";
@@ -8,7 +8,7 @@ let temmlOptions: TemmlOptions = {};
 let customOverrides: Visitor<HTMLRenderer, string> = {};
 let djotHTMLRenderOptions: Parameters<typeof renderHTML>[1] = {};
 
-export function setOptions(newOptions: {
+export function setMathlifierOptions(newOptions: {
   djotParseOptions?: Parameters<typeof parse>[1];
   temmlOptions?: TemmlOptions;
   djotHTMLRenderOptions?: Parameters<typeof renderHTML>[1];
@@ -20,7 +20,7 @@ export function setOptions(newOptions: {
   customOverrides = newOptions.overrides ?? {};
 }
 
-export function resetOptions(): void {
+export function resetMathlifierOptions(): void {
   djotHTMLRenderOptions = {};
   djotParseOptions = {};
   temmlOptions = {};
@@ -28,25 +28,26 @@ export function resetOptions(): void {
 }
 
 /**
- * generates html markup, with the main text interpreted as djot markup,
- * and math nodes converted to MathML via temml.
+ * generates html markup from provided djot markup with math nodes converted to MathML via temml.
  * We will also move any commas and full stops after inline math nodes to prevent HTML line-break at these punctuations.
  *
- * set any temml and djot options with the setOptions function
+ * set any temml and djot options with the setMathlifierOptions function and reset them with resetMathlifierOptions
  *
- * math: starts with ${x}, terminates with new line. MathlifierDj will add $`x` delimiters.
- * display: starts with $${x}, terminates with empty line. MathlifierDj will add $$`x` delimiters.
- * ams env: starts with $${'align'}x, etc, terminates with empty line. MathlifierDj will add $$`\begin{env}x\end{env}` delimiters.
- * text: starts with @${x}, terminates immediately. MathlifierDj will interpolate these as regular strings
+ * math: starts with ${x}, terminates with new line.
+ * display: starts with $${x}, terminates with empty line.
+ * ams env: starts with #${'align'}x, etc, terminates with empty line.
+ * text: starts with @${x}, terminates immediately. Mathlifier will interpolate these as regular strings
  *
- * mathlifier will also turn any non-escaped $x$ delimiters into djot math $`x` syntax.
- */
+ * All remaining $x$ and $$x$$ will also be converted to MathML.
+ *
+ * Full stops and commas right after an inline math node will be shifted inside to prevent potentially weird line breaks from HTML
+ * */
 export function mathlifier(
   strings: TemplateStringsArray,
   ...values: unknown[]
 ): string {
   // move commas and full stops into inline math nodes
-  const markup = mathlifierDj(strings, ...values).replace(
+  const markup = dj(strings, ...values).replace(
     /(?<!\$)(\$\`)([^`]+)\`([.,])/g,
     "$1$2$3`"
   );

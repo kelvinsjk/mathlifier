@@ -1,13 +1,14 @@
 import {
-  mathlifier as md,
-  setOptions,
+  mathlifier,
+  setMathlifierOptions,
+  x,
   //resetOptions
-} from "./lib/mathlifiers";
+} from "./lib/main";
 
-const x = "x";
+const xString = "x";
 const one = 1;
 
-setOptions({
+setMathlifierOptions({
   djotParseOptions: {
     warn: (warning) => console.log(warning.render()),
   },
@@ -25,13 +26,13 @@ setOptions({
 });
 //resetOptions();
 
-export const html = md`# Mathlifier demo
+export const html = mathlifier`# Mathlifier demo
 
 ## Inline math
 
 - Inline static math: $x$.
-- Inline dynamic math ${x}=1.
-- Inline dynamic math gone awry: ${x}=1 and then.
+- Inline dynamic math ${xString}=1.
+- Inline dynamic math gone awry: ${xString}=1 and then.
 - Inline empty start 1: ${{}} x=${one}.
 - Inline empty start 2: ${""} x=${one}.
 
@@ -49,7 +50,7 @@ After displayed math.
 
 ### Dynamic
 
-$${x}
+$${xString}
 =
 1,
 
@@ -57,14 +58,14 @@ then text
 
 ### Dynamic gone wrong
 
-$${x}
+$${xString}
 =
 1
 then text
 
 ### Display math should not touch punctuation 
 
-$${x}
+$${xString}
 =
 1
 
@@ -72,7 +73,7 @@ $${x}
 
 ## Amsmath environments
 
-$${"align"} x &= 1
+#${"align"} x &= 1
 \\\\ y + z &= 2
 
 ## Escaped dollar signs
@@ -90,7 +91,7 @@ $${"\\$"}x
 
 By default, all interpolation triggers math or display modes.
 To interpolate strings, use a preceding @ symbol, like
-in this e@${x}ce@${one}@${one}ent example.
+in this e@${xString}ce@${one}@${one}ent example.
 
 ## Options
 
@@ -120,4 +121,17 @@ $\\begin{pmatrix}
 2
 \\end{pmatrix}$
 
-`;
+### Ending with dollar delimiter should work
+
+$x.$`;
+
+import { parse, renderHTML } from "@djot/djot";
+import { djotMathOverride } from "./lib/mathlifiers/djot-math-override";
+
+export const xDj = x`#${"align"}
+x &= 1 \\\\
+y &= 2`;
+
+export const xHtml = renderHTML(parse(xDj), {
+  overrides: { ...djotMathOverride() },
+});
