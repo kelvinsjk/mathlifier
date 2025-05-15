@@ -18,7 +18,7 @@ npm i -D svelte-djot-math
 
 ```svelte
 <script>
-  import { Djot } from 'svelte-djot-math';
+	import { Djot } from 'svelte-djot-math';
 </script>
 ```
 
@@ -32,8 +32,8 @@ For the best math rendering, include a temml css and font file when using the co
 
 ```svelte
 <Djot>
-  We can use *slots*. Inline math in Djot has the $`x` syntax. We only recommend this for short
-  strings due to how whitespace is handled in HTML.
+	We can use *slots*. Inline math in Djot has the $`x` syntax. We only recommend this for short
+	strings due to how whitespace is handled in HTML.
 </Djot>
 ```
 
@@ -41,7 +41,7 @@ For the best math rendering, include a temml css and font file when using the co
 
 ```svelte
 <script>
-  const djot = 'We can use *props* too. Display math syntax: $$`y`.';
+	const djot = 'We can use *props* too. Display math syntax: $$`y`.';
 </script>
 
 <Djot {djot} />
@@ -53,14 +53,29 @@ For the best math rendering, include a temml css and font file when using the co
 <Djot djot={'_This_ will be rendered.'}>This will *not* be rendered.</Djot>
 ```
 
+### $ delimeters
+
+We also support the "$" delimiters commonly used in LaTeX.
+Markup like \$x\$ and \$\$x\$\$ will be transformed into Djot syntax and
+rendered into HTML accordingly. This also means that you will need to
+_escape_ regular dollar signs in your markup.
+
+This is done by the `transform` function, which can be customized by passing
+your own transform function as an option.
+
 ## Options
 
-You can pass options for the djot parser, the djot renderer (and overrides), and the temml renderer. These are optional props for the component.
+You can pass a custom `transform` function with type
+`(x: string) => string` to customize how your markup
+is handled before it is fed to the djot parser.
+
+You can also pass options for the djot parser, the djot renderer (and overrides), and the temml renderer. These are optional props for the component.
 
 Consult the [djot](https://github.com/jgm/djot.js/) and [temml](https://temml.org/docs/en/administration#options) documentations for more details.
 
 ```svelte
 <Djot
+  {transform}
   {djotParseOptions}
   {djotHTMLRenderOptions}
   {overrides}
