@@ -1,6 +1,9 @@
+packages/mathkit
+
 # Logs
 logs
 *.log
+*.aux
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
