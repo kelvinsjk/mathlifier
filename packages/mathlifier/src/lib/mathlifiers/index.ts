@@ -1,8 +1,9 @@
-export {
-  mathlifier,
-  setMathlifierOptions,
-  resetMathlifierOptions,
-} from "./html";
 export { dj } from "./djot";
+export {
+	djotMathToHTML,
+	mathlifier,
+	resetMathlifierOptions,
+	setMathlifierOptions,
+} from "./html";
 export { md } from "./md";
-export { x, setXOptions, resetXOptions } from "./x";
+export { resetXOptions, setXOptions, x } from "./x";

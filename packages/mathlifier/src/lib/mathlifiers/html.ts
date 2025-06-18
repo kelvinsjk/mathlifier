@@ -1,7 +1,7 @@
-import { dj } from "./djot";
+import { type HTMLRenderer, parse, renderHTML, type Visitor } from "@djot/djot";
+import type { Options as TemmlOptions } from "temml";
 import { djotMathOverride } from "./djot-math-override";
-import { Options as TemmlOptions } from "temml";
-import { renderHTML, parse, type Visitor, type HTMLRenderer } from "@djot/djot";
+import { md } from "./md";
 
 let djotParseOptions: Parameters<typeof parse>[1] = {};
 let temmlOptions: TemmlOptions = {};
@@ -9,22 +9,22 @@ let customOverrides: Visitor<HTMLRenderer, string> = {};
 let djotHTMLRenderOptions: Parameters<typeof renderHTML>[1] = {};
 
 export function setMathlifierOptions(newOptions: {
-  djotParseOptions?: Parameters<typeof parse>[1];
-  temmlOptions?: TemmlOptions;
-  djotHTMLRenderOptions?: Parameters<typeof renderHTML>[1];
-  overrides?: Visitor<HTMLRenderer, string>;
+	djotParseOptions?: Parameters<typeof parse>[1];
+	temmlOptions?: TemmlOptions;
+	djotHTMLRenderOptions?: Parameters<typeof renderHTML>[1];
+	overrides?: Visitor<HTMLRenderer, string>;
 }): void {
-  temmlOptions = newOptions.temmlOptions ?? {};
-  djotHTMLRenderOptions = newOptions.djotHTMLRenderOptions ?? {};
-  djotParseOptions = newOptions.djotParseOptions ?? {};
-  customOverrides = newOptions.overrides ?? {};
+	temmlOptions = newOptions.temmlOptions ?? {};
+	djotHTMLRenderOptions = newOptions.djotHTMLRenderOptions ?? {};
+	djotParseOptions = newOptions.djotParseOptions ?? {};
+	customOverrides = newOptions.overrides ?? {};
 }
 
 export function resetMathlifierOptions(): void {
-  djotHTMLRenderOptions = {};
-  djotParseOptions = {};
-  temmlOptions = {};
-  customOverrides = {};
+	djotHTMLRenderOptions = {};
+	djotParseOptions = {};
+	temmlOptions = {};
+	customOverrides = {};
 }
 
 /**
@@ -43,20 +43,58 @@ export function resetMathlifierOptions(): void {
  * Full stops and commas right after an inline math node will be shifted inside to prevent potentially weird line breaks from HTML
  * */
 export function mathlifier(
-  strings: TemplateStringsArray,
-  ...values: unknown[]
+	strings: TemplateStringsArray,
+	...values: unknown[]
 ): string {
-  // move commas and full stops into inline math nodes
-  const markup = dj(strings, ...values).replace(
-    /(?<!\$)(\$\`)([^`]+)\`([.,])/g,
-    "$1$2$3`"
-  );
-  const doc = parse(markup, djotParseOptions);
-  const overrides = {
-    ...djotMathOverride(temmlOptions),
-    ...customOverrides,
-    ...djotHTMLRenderOptions?.overrides,
-  };
-  djotHTMLRenderOptions = { ...djotHTMLRenderOptions, overrides };
-  return renderHTML(doc, { ...djotHTMLRenderOptions });
+	// move commas and full stops into inline math nodes
+	const markup = md(strings, ...values);
+	return djotMathToHTML(markup, {
+		temmlOptions,
+		djotHTMLRenderOptions,
+		djotParseOptions,
+		overrides: customOverrides,
+	});
+}
+
+/**
+ * outputs html from djot markup
+ *
+ * the default transform applies the following:
+ * - convert $x$ and $$x$$ math markup to the djot equivalent
+ * - move commas and full stops into inline math nodes
+ */
+export function djotMathToHTML(
+	markup: string,
+	options?: {
+		transform?: (x: string) => string;
+		temmlOptions?: TemmlOptions;
+		djotHTMLRenderOptions?: Parameters<typeof renderHTML>[1];
+		djotParseOptions?: Parameters<typeof parse>[1];
+		overrides?: Visitor<HTMLRenderer, string>;
+	},
+): string {
+	const transform =
+		options?.transform ??
+		((x) => {
+			return x
+				.replace(
+					/(?<![\\`])(\${1,2})(?!`)([\s\S]+?)(?<!\\)\1(?![`$])/g,
+					(_, delim, content) =>
+						`${delim}\`${content.replaceAll("\\_", "_")}\``,
+				)
+				.replace(/(?<!\$)(\$`)([^`]+)`([.,])/g, "$1$2$3`");
+		});
+	const overrides = {
+		...djotMathOverride(options?.temmlOptions),
+		...options?.overrides,
+		...options?.djotHTMLRenderOptions?.overrides,
+	};
+	const finalOptions = {
+		...options?.djotHTMLRenderOptions,
+		overrides,
+	};
+	return renderHTML(
+		parse(transform(markup), options?.djotParseOptions),
+		finalOptions,
+	);
 }

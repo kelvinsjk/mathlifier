@@ -12,14 +12,14 @@ import { md } from "./md";
  * mathlifier will also turn any non-escaped $x$ delimiters into djot math $`x` syntax.
  */
 export function dj(
-  strings: TemplateStringsArray,
-  ...values: unknown[]
+	strings: TemplateStringsArray,
+	...values: unknown[]
 ): string {
-  const markup = md(strings, ...values);
-  return markup
-    .replace(/(?<!\\)\$(?!`)\$([^]+?)\$\$/g, (_, match) => `$$\`${match}\``)
-    .replace(
-      /(?<!\\)\$(?![`$])([^]+?)(?<!\\)\$/g,
-      (_, match) => `$\`${match}\``
-    );
+	const markup = md(strings, ...values);
+	return markup
+		.replace(
+			/(?<![\\`])(\${1,2})(?!`)([\s\S]+?)(?<!\\)\1(?![`$])/g,
+			(_, delim, content) => `${delim}\`${content.replaceAll("\\_", "_")}\``,
+		)
+		.replace(/(?<!\$)(\$`)([^`]+)`([.,])/g, "$1$2$3`");
 }

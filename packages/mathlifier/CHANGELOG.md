@@ -1,5 +1,11 @@
 # Mathlifier Changelog
 
+## 3.1.0
+
+### Minor Changes
+
+- feat: exports djotMathToHTML function
+
 ## 3.0.0
 
 ### Major Changes
