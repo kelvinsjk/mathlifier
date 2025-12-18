@@ -1,5 +1,17 @@
 # Mathlifier Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- bump version number to eliminate mismatch. previous changeset (bump temml version) applicable for this
+
+## 3.2.0
+
+### Minor Changes
+
+- bump depedencies. in particular, temml is updated to version 0.12.2
+
 ## 3.1.0
 
 ### Minor Changes

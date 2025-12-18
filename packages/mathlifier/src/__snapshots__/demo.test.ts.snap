@@ -10,16 +10,16 @@ exports[`demo works 1`] = `
 Inline static math: <math><mrow><mi>x</mi><mi>.</mi></mrow></math>
 </li>
 <li>
-Inline dynamic math <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+Inline dynamic math <math><mrow><mi>x</mi><mo>=</mo><mn>1.</mn></mrow></math>
 </li>
 <li>
-Inline dynamic math gone awry: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>a</mi><mi>n</mi><mi>d</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>.</mi></mrow></math>
+Inline dynamic math gone awry: <math><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mi>a</mi><mi>n</mi><mi>d</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>.</mi></mrow></math>
 </li>
 <li>
-Inline empty start 1: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+Inline empty start 1: <math><mrow><mi>x</mi><mo>=</mo><mn>1.</mn></mrow></math>
 </li>
 <li>
-Inline empty start 2: <math><mrow><mi>x</mi><mo>=</mo></mrow><mrow><mn>1</mn><mi>.</mi></mrow></math>
+Inline empty start 2: <math><mrow><mi>x</mi><mo>=</mo><mn>1.</mn></mrow></math>
 </li>
 </ul>
 </section>
@@ -47,7 +47,7 @@ After displayed math.</p>
 </section>
 <section id="Amsmath-environments">
 <h2>Amsmath environments</h2>
-<p><math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" columnalign="left right left right" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mrow><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math></p>
+<p><math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" class="tml-jot" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mrow><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math></p>
 </section>
 <section id="Escaped-dollar-signs">
 <h2>Escaped dollar signs</h2>
@@ -67,7 +67,7 @@ in this exce11ent example.</p>
 <h2>Options</h2>
 <section id="Temml-Options">
 <h3>Temml Options</h3>
-<p><math><mrow><mi>x</mi><mo>∈</mo></mrow><mrow><mi>ℝ</mi></mrow></math></p>
+<p><math><mrow><mi>x</mi><mo>∈</mo><mi>ℝ</mi></mrow></math></p>
 </section>
 <section id="Djot-Parse-Options-Warnings">
 <h3>Djot Parse Options (Warnings)</h3>
@@ -87,7 +87,7 @@ djotParseOptions sent a warning to the console.</p>
 <h2>Tests</h2>
 <section id="Inline-should-work-across-multiple-lines">
 <h3>Inline should work across multiple lines</h3>
-<p><math><mrow><mo fence="true" form="prefix">(</mo><mtable columnalign="center"><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>1</mn></mtd></mtr><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>2</mn></mtd></mtr></mtable><mo fence="true" form="postfix">)</mo></mrow></math></p>
+<p><math><mrow><mo fence="true" form="prefix">(</mo><mtable><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>1</mn></mtd></mtr><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>2</mn></mtd></mtr></mtable><mo fence="true" form="postfix">)</mo></mrow></math></p>
 </section>
 <section id="Ending-with-dollar-delimiter-should-work">
 <h3>Ending with dollar delimiter should work</h3>
@@ -101,7 +101,7 @@ djotParseOptions sent a warning to the console.</p>
 exports[`x demo works 1`] = `
 "
 \`\`\` =html
-<math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" columnalign="left right left right" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 0em;width:50%;"></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;"><mi>y</mi></mtd><mtd class="tml-left" style="padding:0.7ex 0em 0.7ex 0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd class="tml-right" style="padding:0.7ex 0em 0.7ex 1em;width:50%;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math>
+<math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" class="tml-jot" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mi>y</mi></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math>
 \`\`\`
 
 \`\`\` =tex
