@@ -1,7 +1,7 @@
 {
 	"name": "svelte-djot-math",
 	"description": "Svelte component to render Djot markup, with math rendered into MathML via Temml",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license": "MIT",
 	"author": "Kelvin Soh",
 	"keywords": [
