@@ -223,7 +223,13 @@ pnpm updateSnapshot
 2. Run `pnpm changeset` to create a changeset
 3. Commit changes and changeset
 4. Run `pnpm version` to bump versions
-5. Run `pnpm release` to publish to npm
+5. **For publishing:** Due to 2FA requirements, run `npm publish` manually in each package directory:
+   ```bash
+   cd packages/mathlifier && npm publish
+   cd packages/svelte-math && npm publish
+   cd packages/svelte-djot-math && npm publish
+   ```
+   Then follow the prompts and enter your 2FA/OTP code when requested.
 
 ### Access
 
