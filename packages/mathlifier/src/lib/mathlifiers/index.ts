@@ -1,4 +1,5 @@
 export { dj } from "./djot";
+export { djotMathOverride } from "./djot-math-override";
 export {
 	djotMathToHTML,
 	mathlifier,

@@ -1,7 +1,7 @@
-import temml from 'temml';
+import temml, { type Options } from 'temml';
 import type { InlineMath, DisplayMath, Visitor, HTMLRenderer } from '@djot/djot';
 
-export function djotMathOverride(options?: temml.Options): Visitor<HTMLRenderer, string> {
+export function djotMathOverride(options?: Options): Visitor<HTMLRenderer, string> {
 	return {
 		inline_math: (node: InlineMath) => {
 			return temml.renderToString(node.text, { ...options });

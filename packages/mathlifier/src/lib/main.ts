@@ -1,6 +1,7 @@
 export { mathlifierFactory } from "./factory";
 export {
 	dj,
+	djotMathOverride,
 	djotMathToHTML,
 	mathlifier,
 	md,
