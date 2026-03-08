@@ -270,15 +270,16 @@ function startNewEnv(
 ): [Modes, string, string, MathEnvOptions] {
   const defaultMathEnvOptions = { mathEnv: MathEnvs.equation };
   let mathEnvOptions: MathEnvOptions = defaultMathEnvOptions;
-  if (after.endsWith("$")) {
-    // new display mode
+  if (after === "$" || after.endsWith("$$")) {
+    // new display mode: $${...} (after="$") or text$$ followed by interpolation
     let x = `${nextVal}`;
     let mode = Modes.display;
-    // new display mode
+    // Strip one $ if after="$", otherwise strip two $$ for text$$
+    const stripLen = after === "$" ? 1 : 2;
     return [
       mode,
       x,
-      curr + `${newline}${after.slice(0, after.length - 1)}`,
+      curr + `${newline}${after.slice(0, after.length - stripLen)}`,
       mathEnvOptions,
     ];
   } else if (after.endsWith("#")) {

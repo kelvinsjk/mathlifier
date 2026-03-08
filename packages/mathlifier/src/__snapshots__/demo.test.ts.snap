@@ -32,30 +32,49 @@ After displayed math.</p>
 <p>After displayed math.</p>
 <section id="Dynamic">
 <h3>Dynamic</h3>
-<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo></mrow></math></p>
+<p><span class="temml-error" style="color:#b22222;white-space:pre-line;"> x $
+=
+1,
+
+ParseError:  Can&#x27;t use function &#x27;$&#x27; in math mode at position 4: 
+ x $̲
+=
+1,</span></p>
 <p>then text</p>
 </section>
 <section id="Dynamic-gone-wrong">
 <h3>Dynamic gone wrong</h3>
-<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mi>t</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow></math></p>
+<p><code> x $</code>
+=
+1
+then text</p>
 </section>
 <section id="Display-math-should-not-touch-punctuation">
 <h3>Display math should not touch punctuation</h3>
-<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math></p>
+<p><span class="temml-error" style="color:#b22222;white-space:pre-line;"> x $
+
+ParseError:  Can&#x27;t use function &#x27;$&#x27; in math mode at position 4: 
+ x $̲</span>
+=
+1</p>
 <p>.</p>
 </section>
 </section>
 <section id="Amsmath-environments">
 <h2>Amsmath environments</h2>
-<p><math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" class="tml-jot" style="width:100%;"><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mi>x</mi></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>1</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr><mtr><mtd class="tml-right" style="padding:0;width:50%;padding-left:0em;padding-right:0em;"></mtd><mtd class="tml-right" style="padding-left:1em;padding-right:0em;"><mrow><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>=</mo><mn>2</mn></mrow></mtd><mtd style="padding:0;width:50%;padding-left:1em;padding-right:0em;"><mtext><span class="tml-eqn"></span></mtext></mtd></mtr></mtable></math></p>
+<p><span class="temml-error" style="color:#b22222;white-space:pre-line;"> \\begin{align} x &amp;= 1
+\\\\ y + z &amp;= 2
+\\end{align} $$
+
+ParseError:  {align} can be used only in display mode.</span></p>
 </section>
 <section id="Escaped-dollar-signs">
 <h2>Escaped dollar signs</h2>
-<p>$x  vs <math><mi>x</mi></math></p>
-<p>Escaping within math <math><mrow><mi>$</mi><mi>x</mi><mo separator="true">,</mo></mrow></math> dynamic math <math><mrow><mi>$</mi><mi>x</mi><mo separator="true">,</mo></mrow></math>
+<p>$x  vs $x$</p>
+<p>Escaping within math $$x$, dynamic math $ $x, $
 and displayed math</p>
-<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>$</mi><mi>x</mi></mrow></math></p>
-<p><math display="block" class="tml-display" style="display:block math;"><mrow><mi>$</mi><mi>x</mi></mrow></math></p>
+<p><code> \\$x $$</code></p>
+<p><code> \\$x $</code></p>
 </section>
 <section id="Dynamic-text-example">
 <h2>Dynamic text example</h2>
@@ -67,7 +86,7 @@ in this exce11ent example.</p>
 <h2>Options</h2>
 <section id="Temml-Options">
 <h3>Temml Options</h3>
-<p><math><mrow><mi>x</mi><mo>∈</mo><mi>ℝ</mi></mrow></math></p>
+<p><code> x \\inR $</code></p>
 </section>
 <section id="Djot-Parse-Options-Warnings">
 <h3>Djot Parse Options (Warnings)</h3>
@@ -87,11 +106,14 @@ djotParseOptions sent a warning to the console.</p>
 <h2>Tests</h2>
 <section id="Inline-should-work-across-multiple-lines">
 <h3>Inline should work across multiple lines</h3>
-<p><math><mrow><mo fence="true" form="prefix">(</mo><mtable><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>1</mn></mtd></mtr><mtr><mtd style="padding-left:0em;padding-right:0em;"><mn>2</mn></mtd></mtr></mtable><mo fence="true" form="postfix">)</mo></mrow></math></p>
+<p><code>\\begin{pmatrix}
+1 \\\\
+2
+\\end{pmatrix}$</code></p>
 </section>
 <section id="Ending-with-dollar-delimiter-should-work">
 <h3>Ending with dollar delimiter should work</h3>
-<p><math><mrow><mi>x</mi><mi>.</mi></mrow></math></p>
+<p><code>x.$</code></p>
 </section>
 </section>
 </section>

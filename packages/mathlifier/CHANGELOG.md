@@ -1,5 +1,13 @@
 # Mathlifier Changelog
 
+## 3.4.1
+
+### Patch Changes
+
+- Fix bug where trailing inline math `$...$` loses closing delimiter when preceded by display math starter `${{}}`
+
+  The `startNewEnv` function in the factory was incorrectly treating the trailing `$` of inline math as a display math starter. Changed the condition from `after.endsWith("$")` to `after === "$" || after.endsWith("$$")` to properly distinguish between `$${...}` (display math starter) and `$y$` (inline math).
+
 ## 3.3.0
 
 ### Minor Changes

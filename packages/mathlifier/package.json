@@ -1,6 +1,6 @@
 {
   "name": "mathlifier",
-  "version": "3.3.0",
+  "version": "3.4.1",
   "type": "module",
   "files": [
     "dist"
