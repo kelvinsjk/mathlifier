@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { html, xDj } from "./demo";
+import { html, xDj } from "../demo";
 import fs from "fs";
 import { exec } from "child_process";
 

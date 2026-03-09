@@ -1,5 +1,34 @@
 # Mathlifier Changelog
 
+## 3.5.1
+
+### Patch Changes
+
+- Fix display mode and trailing inline math bugs
+
+  - Fixed display mode that was broken by the 3.4.1 fix
+  - Properly fixed the trailing inline math bug without breaking display mode
+  - Added `isLast` parameter to `startNewEnv` to detect end of template
+  - Fixed regex in `x()` function to properly match math after newlines
+  - Added comprehensive test suite with 43 tests
+
+## 3.5.1
+
+### Patch Changes
+
+- Fix display mode and trailing inline math bugs
+
+  Fixed display mode that was broken by the 3.4.1 fix. The issue was that the `startNewEnv` function's condition `after === "$"` didn't catch `$${...}` syntax where `after` is a string like `"text $"`.
+
+  Properly fixed the trailing inline math bug by:
+
+  - Adding `isLast` parameter to `startNewEnv` to detect when processing the last string
+  - Display mode only triggers when: `after.endsWith("$")` AND `!isLast` AND `nextVal` is not an empty object
+
+  Fixed regex in `x()` function: changed `(?<![\\`])`to`(?<![\])` to allow matching math after newlines.
+
+  Added comprehensive test suite with 43 tests covering inline math, display mode, math environments, text interpolation, and edge cases.
+
 ## 3.5.0
 
 ### Minor Changes
@@ -48,39 +77,36 @@
 - setOptions and resetOptions are now setMathlifierOptions and
   resetMathlifierOptions
 - Only `mathlifier*` functions are changed. "Sprinkles" (`math`, `display`, etc)
-  are untouched so you can upgrade without changes if those are the only
-  functions in use.
-
-### Patch Changes
-
-- fix: correct output when string ends in $
-
-## 2.0.3
-
-### Patch Changes
-
-- bug fixes: inline math now supports content spanning multiple lines
-
-## 2.0.2
-
-### Patch Changes
-
-- bug fixes: export legacy math, display, etc functions
-
-## 2.0.1
-
-### Patch Changes
-
-- bug fixes: added file and prepublish script to package.json
+  remain unchanged
 
 ## 2.0.0
 
 ### Major Changes
 
-- Feat: `mathlifier`, `mathlifierTex`, `mathlifierDj`, `mathlifierFactory`
-  enables easy interpolation between math and regular text.
+- feat: consolidate all mathlifier functions into a single package with multiple
+  entry points
 
-### BREAKING CHANGES
+### Breaking Changes
 
-- KaTeX is now replaced by Temml, which renders MathML strings.
-- Removed typesetting functions like `newline`, `newParagraph`, etc.
+- Named imports changed from `mathlifier` to `mathlifierStandalone` and
+  `mathlifierSvelte` for the standalone and svelte versions respectively
+- Renamed various functions for clarity (e.g., `mathlifierObj` to `mathlifier`,
+  `mathlifier` to `mathlifierString`)
+
+## 1.1.0
+
+### Minor Changes
+
+- feat: add sprinkles functions (math, display, align, gather, alignat)
+
+## 1.0.1
+
+### Patch Changes
+
+- docs: fix README.md typo
+
+## 1.0.0
+
+### Major Changes
+
+- feat: initial stable release

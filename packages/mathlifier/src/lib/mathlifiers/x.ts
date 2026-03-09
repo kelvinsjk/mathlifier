@@ -24,7 +24,7 @@ export function resetXOptions(): void {
 export function x(strings: TemplateStringsArray, ...values: unknown[]): string {
 	return mathlifierFactory(modules)(strings, ...values)
 		.replace(
-			/(?<![\\`])(\${1,2})(?!`)([\s\S]+?)(?<!\\)\1(?![`$])/g,
+			/(?<![\\])(\${1,2})(?!`)([\s\S]+?)(?<!\\)\1(?![`$])/g,
 			(_, delim, content) => `${delim}\`${content.replaceAll("\\_", "_")}\``,
 		)
 		.replace(/(?<!\$)(\$`)([^`]+)`([.,])/g, "$1$2$3`");

@@ -48,8 +48,9 @@ export function mathlifierFactory(
           finalOutput += `${str.slice(0, str.length - 1)}${nextVal}`;
         } else {
           // starts new text environment
+          const isLast = i === strings.length - 1;
           [mode, accumulatedEnvOutput, finalOutput, mathEnvOptions] =
-            startNewEnv(str, "", nextVal, finalOutput);
+            startNewEnv(str, "", nextVal, finalOutput, isLast);
         }
       } else if (mode === Modes.math) {
         // checks for \n or \r\n non-greedily
@@ -62,8 +63,9 @@ export function mathlifierFactory(
           if (accumulatedEnvOutput) {
             finalOutput += modules.math(accumulatedEnvOutput);
           }
+          const isLast = i === strings.length - 1;
           [mode, accumulatedEnvOutput, finalOutput, mathEnvOptions] =
-            startNewEnv(after, newline, nextVal, finalOutput);
+            startNewEnv(after, newline, nextVal, finalOutput, isLast);
         } else {
           // continue math mode
           if (str.endsWith(`@`)) {
@@ -88,8 +90,9 @@ export function mathlifierFactory(
           if (accumulatedEnvOutput) {
             finalOutput += modules.display(accumulatedEnvOutput);
           }
+          const isLast = i === strings.length - 1;
           [mode, accumulatedEnvOutput, finalOutput, mathEnvOptions] =
-            startNewEnv(after, newline, nextVal, finalOutput);
+            startNewEnv(after, newline, nextVal, finalOutput, isLast);
         } else {
           // continue display mode
           if (str.endsWith(`@`)) {
@@ -118,8 +121,9 @@ export function mathlifierFactory(
               modules
             );
           }
+          const isLast = i === strings.length - 1;
           [mode, accumulatedEnvOutput, finalOutput, mathEnvOptions] =
-            startNewEnv(after, newline, nextVal, finalOutput);
+            startNewEnv(after, newline, nextVal, finalOutput, isLast);
         } else {
           // continue mathEnv mode
           if (str.endsWith(`@`)) {
@@ -266,20 +270,21 @@ function startNewEnv(
   after: string,
   newline: string,
   nextVal: unknown,
-  curr: string
+  curr: string,
+  isLast: boolean
 ): [Modes, string, string, MathEnvOptions] {
   const defaultMathEnvOptions = { mathEnv: MathEnvs.equation };
   let mathEnvOptions: MathEnvOptions = defaultMathEnvOptions;
-  if (after === "$" || after.endsWith("$$")) {
-    // new display mode: $${...} (after="$") or text$$ followed by interpolation
+  if (after.endsWith("$") && !isLast && !(typeof nextVal === "object" && Object.keys(nextVal || {}).length === 0)) {
+    // new display mode: string ends with "$" (for $${...} syntax) or "$$"
+    // BUT skip if isLast (trailing case) or nextVal is empty object (${{}} syntax)
     let x = `${nextVal}`;
     let mode = Modes.display;
-    // Strip one $ if after="$", otherwise strip two $$ for text$$
-    const stripLen = after === "$" ? 1 : 2;
+    // Strip one $ for both cases (will leave one $ for $$ case)
     return [
       mode,
       x,
-      curr + `${newline}${after.slice(0, after.length - stripLen)}`,
+      curr + `${newline}${after.slice(0, after.length - 1)}`,
       mathEnvOptions,
     ];
   } else if (after.endsWith("#")) {

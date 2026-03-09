@@ -1,5 +1,5 @@
 import { expect, it, describe } from "vitest";
-import { x } from "./lib/main";
+import { x } from "../lib/main";
 
 describe("Bug fix: Trailing inline math after display math starter", () => {
   // Regression test for: Trailing inline math `$...$` loses closing delimiter 
